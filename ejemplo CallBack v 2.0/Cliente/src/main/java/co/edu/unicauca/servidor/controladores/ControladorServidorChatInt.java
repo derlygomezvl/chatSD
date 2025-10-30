@@ -3,6 +3,7 @@ package co.edu.unicauca.servidor.controladores;
 import co.edu.unicauca.cliente.controladores.UsuarioCllbckInt;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 public interface ControladorServidorChatInt extends Remote
 {
@@ -11,6 +12,10 @@ public interface ControladorServidorChatInt extends Remote
     public void salir(String nickname) throws RemoteException;
     public void mostrarClientesRegitrados() throws RemoteException;
     public void enviarMensajeUsuario(String nicknameDestino, String mensaje) throws RemoteException;
+    public void mostrarClientesRegistrados() throws RemoteException;
+    public List<String> obtenerNicknames() throws RemoteException;
+    public boolean estaConectado(String nickname) throws RemoteException;
+
 }
 
 
