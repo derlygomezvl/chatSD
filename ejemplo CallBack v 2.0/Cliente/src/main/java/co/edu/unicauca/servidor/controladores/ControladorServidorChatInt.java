@@ -10,6 +10,7 @@ public interface ControladorServidorChatInt extends Remote
     public void enviarMensaje(String mensaje)throws RemoteException;
     public void salir(String nickname) throws RemoteException;
     public void mostrarClientesRegitrados() throws RemoteException;
+    public void enviarMensajeUsuario(String nicknameDestino, String mensaje) throws RemoteException;
 }
 
 

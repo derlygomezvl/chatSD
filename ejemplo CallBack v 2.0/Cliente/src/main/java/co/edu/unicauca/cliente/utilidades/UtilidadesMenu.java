@@ -17,8 +17,10 @@ public class UtilidadesMenu {
                 enviarMensajeChatGrupal(servidor);
                 break;
             case 2:
+                mostrarClientesRegitrados(servidor);
                 break;
             case 3:
+                enviarMensajeUsuario(servidor);
                 break;
             case 4: 
                 salirChatGrupal(nickname, servidor);
@@ -58,5 +60,19 @@ public class UtilidadesMenu {
             System.out.println("No se pudo ejecutar el metodo remoto enviarMensaje...");
             System.out.println(e.getMessage());
         } 
+
+    }
+    
+    public void enviarMensajeUsuario(ControladorServidorChatInt servidor){
+        try{
+            System.out.println("Digite el nickname del usuario al que desea enviar el mensaje: ");
+            String nicknameDestino=UtilidadesConsola.leerCadena();
+            System.out.println("Digite el mensaje a enviar al usuario: ");
+            String mensaje=UtilidadesConsola.leerCadena();
+            servidor.enviarMensajeUsuario(nicknameDestino, mensaje);
+        }catch(Exception e){
+            System.out.println("No se pudo ejecutar el metodo remoto enviarMensajeUsuario...");
+            System.out.println(e.getMessage());
+        }
     }
 }
