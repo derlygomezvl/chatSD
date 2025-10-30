@@ -67,4 +67,35 @@ public class ControladorServidorChatImpl extends UnicastRemoteObject implements 
         }
 
     }
+
+    public void enviarMensajeAUsuario(String mensaje, String nicknameOrigen, String nicknameDestino) throws RemoteException {
+        UsuarioCllbckInt usuarioDestino = usuarios.get(nicknameDestino);
+        if (usuarioDestino != null) {
+            usuarioDestino.notificar("Mensaje de " + nicknameOrigen + ": " + mensaje, usuarios.size());
+        } else {
+            UsuarioCllbckInt usuarioOrigen = usuarios.get(nicknameOrigen);
+            if (usuarioOrigen != null) {
+                usuarioOrigen.notificar("El usuario " + nicknameDestino + " no está conectado.", usuarios.size());
+            }
+        }
+    }
+
+
+    public List<String> obtenerNicknames() throws RemoteException {
+        return new ArrayList<>(usuarios.keySet());
+    }   
+
+    public boolean estaConectado(String nickname) throws RemoteException {
+        return usuarios.containsKey(nickname);
+    }
+
+    @Override
+    public void mostrarClientesRegistrados() throws RemoteException {
+        System.out.println("Clientes registrados:");
+        int i = 0;
+        for (String key : usuarios.keySet()) {
+            System.out.println("Usuario " + i + ": " + key);
+            i++;
+        }
+    }
 }
